@@ -10,7 +10,7 @@ Implementation of a RTP server that sends video stream (H.264/HEVC) using the Re
 
 ### Receive & Play Video as RTP Client
 
-**1 .FFmpeg/ffplay**
+**1 .使用FFmpeg和ffplay演示播放H264文件**
 
 play rtp video stream.
 ```sh
@@ -24,7 +24,7 @@ ffmpeg -re -i Sample.h264 -vcodec copy -f rtp rtp://127.0.0.1:1234 > play.sdp
 ```
 
 
-**2. VLC**
+**2. 使用VLC和RTPServer演示播放视频**
 
 Open **play.sdp** using VLC before RTPServer runs.
 

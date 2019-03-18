@@ -76,6 +76,13 @@ void rtpSendData(RTPMuxContext *ctx, const uint8_t *buf, int len, int mark)
 }
 
 // 拼接NAL头部 在 ctx->buff, 然后ff_rtp_send_data
+/**
+ *
+ * @param ctx   RTPMuxContext维护上下文关系
+ * @param nal   nalu单元开始的地址
+ * @param size  nalu单元大小
+ * @param last  是否为最后一个nalu单元
+ */
 static void rtpSendNAL(RTPMuxContext *ctx, const uint8_t *nal, int size, int last){
     printf("rtpSendNAL  len = %d M=%d\n", size, last);
 
@@ -214,6 +221,7 @@ void rtpSendH264HEVC(RTPMuxContext *ctx, UDPContext *udp, const uint8_t *buf, in
         const uint8_t *r1;
         while (!*(r++));  // skip current startcode
 
+        // 找NALU单元
         r1 = ff_avc_find_startcode(r, end);  // find next startcode
 
         // send a NALU (except NALU startcode), r1==end indicates this is the last NALU

@@ -22,6 +22,7 @@ int main() {
         .dstPort = 1234         // destination port
     };
 
+    // read the h264 file
     res = readFile(&stream, &len, fileName);
     if (res){
         printf("readFile error.\n");
@@ -36,6 +37,7 @@ int main() {
     }
 
     initRTPMuxContext(&rtpMuxContext);
+
     rtpSendH264HEVC(&rtpMuxContext, &udpContext, stream, len);
 
     free(stream);
